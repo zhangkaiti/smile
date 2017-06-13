@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" 
+	     src="scripts/jquery.min.js"></script>
+</head>
+<body>
+	<div>请输入序号:<input type="text" id="index" style="border-radius: 4px;width: 200px; height: 30px;"/></div>
+	<button style="width:70px;height: 30px;background-color: #2e2e92;color:white" onclick="hello()">确认</button>
+	
+	<div id="span"></div>
+	
+</body>
+<script type="text/javascript">
+	
+	function hello(){
+		var index = $("#index").val().trim();
+		console.log(index);
+		if(!index){
+			alert("请输入一个数字");
+		}else{
+			$.ajax({
+				url:"/user/hello.do",
+				type:"post",
+				data:{id:index},
+				success:function(result){
+					console.log(result);
+					var html='<span>Hello World!!'+result+'</span>';
+					return $("#span").html(html);
+				},
+			});
+		}
+		
+	}
+	
+</script>
+
+</html>
